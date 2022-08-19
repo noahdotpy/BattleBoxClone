@@ -4,6 +4,9 @@ import me.diligord.battleboxclone.BattleBoxClone;
 import me.diligord.battleboxclone.listeners.PlayerListener;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -43,6 +46,15 @@ public class GameCountdownStartEvent extends Event implements Cancellable {
         Bukkit.getPluginManager().registerEvents(new PlayerListener(plugin), plugin);
 
         plugin.gameStarted = false;
+
+        Location teleportLocation = (Location) plugin.getConfig().get("teams.blue.teleport-location");
+
+        Bukkit.getOnlinePlayers().forEach(player -> {
+            player.teleport(teleportLocation);
+            Block blockUnder = teleportLocation.clone().add(new Location(teleportLocation.getWorld(), 0, -1, 0)).getBlock();
+            if (blockUnder.getType() == Material.AIR) blockUnder.setType(Material.BARRIER);
+        });
+
 
         new BukkitRunnable() {
             int timer = countdownTime;

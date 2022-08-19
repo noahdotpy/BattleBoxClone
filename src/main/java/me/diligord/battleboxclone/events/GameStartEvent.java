@@ -32,7 +32,8 @@ public class GameStartEvent extends Event implements Cancellable {
     }
 
     public GameStartEvent(BattleBoxClone plugin) {
-        broadcast(Component.text("Started game."));
+        broadcast(Component.text("Go!"));
+
         plugin.gameStarted = true;
     }
 

@@ -1,1 +1,9 @@
 game-countdown: 5 # in seconds
+teams:
+  blue:
+    teleport-location:
+      ==: org.bukkit.Location
+      world: world
+      x: 18.10714196773074
+      y: 73.0
+      z: -48.06638886084458
