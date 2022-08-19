@@ -1,6 +1,6 @@
 package me.diligord.battleboxclone;
 
-import me.diligord.battleboxclone.commands.StartGameCountdownCommand;
+import me.diligord.battleboxclone.commands.StartGameCommand;
 import me.diligord.battleboxclone.listeners.GameEventListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
@@ -19,7 +19,7 @@ public final class BattleBoxClone extends JavaPlugin {
 
         plMan.registerEvents(new GameEventListener(), this);
 
-        getCommand("startgame").setExecutor(new StartGameCountdownCommand(this));
+        getCommand("startgame").setExecutor(new StartGameCommand(this));
 
 
         // Game start countdown
