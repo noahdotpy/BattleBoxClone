@@ -1,0 +1,10 @@
+name: BattleBoxClone
+version: '${project.version}'
+main: me.diligord.battleboxclone.BattleBoxClone
+api-version: 1.19
+authors: [ Diligord ]
+description: A plugin that aims to replicate MCC's BattleBox.
+commands:
+  startgame:
+    description: Starts the game countdown.
+    usage: "/<command> <OPTIONAL: countdown>"
