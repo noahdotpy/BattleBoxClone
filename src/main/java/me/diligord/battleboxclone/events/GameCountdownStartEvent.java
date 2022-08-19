@@ -1,11 +1,12 @@
 package me.diligord.battleboxclone.events;
 
+import me.diligord.battleboxclone.BattleBoxClone;
+import me.diligord.battleboxclone.listeners.PlayerListener;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
@@ -37,14 +38,19 @@ public class GameCountdownStartEvent extends Event implements Cancellable {
     * Parameters:
     *   - countdownTime: the game countdown time in seconds
     */
-    public GameCountdownStartEvent(int countdownTime, Plugin plugin) {
+    public GameCountdownStartEvent(int countdownTime, BattleBoxClone plugin) {
+
+        Bukkit.getPluginManager().registerEvents(new PlayerListener(plugin), plugin);
+
+        plugin.gameStarted = false;
+
         new BukkitRunnable() {
             int timer = countdownTime;
 
             @Override
             public void run() {
                 if (timer == 0) {
-                    Bukkit.getServer().getPluginManager().callEvent(new GameStartEvent());
+                    Bukkit.getServer().getPluginManager().callEvent(new GameStartEvent(plugin));
                     super.cancel();
                 }
                 else broadcast(Component.text("Starting in " + timer-- + " seconds."));

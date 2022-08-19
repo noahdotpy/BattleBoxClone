@@ -8,6 +8,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class BattleBoxClone extends JavaPlugin {
 
+    public boolean gameStarted;
+
     @Override
     public void onEnable() {
         // Config

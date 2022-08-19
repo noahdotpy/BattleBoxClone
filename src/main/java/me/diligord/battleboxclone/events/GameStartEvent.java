@@ -1,5 +1,6 @@
 package me.diligord.battleboxclone.events;
 
+import me.diligord.battleboxclone.BattleBoxClone;
 import net.kyori.adventure.text.Component;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
@@ -30,8 +31,9 @@ public class GameStartEvent extends Event implements Cancellable {
         cancelled = cancel;
     }
 
-    public GameStartEvent() {
+    public GameStartEvent(BattleBoxClone plugin) {
         broadcast(Component.text("Started game."));
+        plugin.gameStarted = true;
     }
 
 }
